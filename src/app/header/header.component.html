@@ -1,0 +1,7 @@
+<div class="header-container">
+  <img src="https://s3-us-west-2.amazonaws.com/ae-p/system/bio/photo/197572/moviesflix-logo.jpg"/>
+
+  <div class="genre-container">
+    <div *ngFor = 'let genre of genreList'><span [ngClass] = 'getToggleClass(genre.id)' (click)="toggleGenre(genre.id)">{{genre.name}}</span></div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.loading-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.loading-movie{
+        width: 20%;
+        height: 200px;
+        margin-left: 0.5%;
+        background: rgb(80, 80, 80);
+        animation: mymove 5s infinite;
+      }
+      
+      @keyframes mymove {
+        from {background-color: rgb(80, 80, 80);}
+        to {background-color: rgb(37, 37, 37);}
+      }

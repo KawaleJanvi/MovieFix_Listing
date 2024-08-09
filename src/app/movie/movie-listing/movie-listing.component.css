@@ -1,0 +1,19 @@
+.movie-title{
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.movie-details-container{
+    z-index: 10;
+    margin-top: -60px;
+    color: whitesmoke;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+.movie{
+    padding: 10px;
+}
