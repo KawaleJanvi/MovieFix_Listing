@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+/* @font-face {
+    font-family: 'roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: url(../public/Roboto-Light.ttf) format('ttf');
+  } */
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata');
+
+body{
+    font-family:'Crimson Pro', serif;
+}
+.root-container{
+    background-color: #232323;
+    height: 100%;
+    width: 100%;
+}
