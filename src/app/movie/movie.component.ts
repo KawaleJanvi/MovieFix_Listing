@@ -20,7 +20,6 @@ export class MovieComponent {
   year: number = 2012;
   currentYear = this.year;
   visitedYears = new Set;
-
   constructor(public httpInterfaceService: HttpInterfaceService) { }
   ngOnInit() {
     // To get all the list of years for movies api 
@@ -30,6 +29,7 @@ export class MovieComponent {
     //   years.push(i)
     // }
     // years.map((year: any) => this.getMovies(year));
+    this.visitedYears.add(new Date().getFullYear())
     this.getMovies(this.year);
     // this.scrollChangeCallback = () => this.onContentScrolled(event);
     // window.addEventListener('scroll',this.scrollChangeCallback, true);
@@ -99,12 +99,12 @@ export class MovieComponent {
           return a.year - b.year;
         });
       });
-      // if (year == this.year) {
+      if (year == this.year) {
       setTimeout(() => {
         // document.getElementById('2012').scrollTo(0, document.getElementById('main-container').offsetTop);
         window.scrollTo(0, document.getElementById('main-container').offsetTop + 70)
       }, 100);
-      // }
+      }
     }
   }
   onScroll(event, year) {
