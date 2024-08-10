@@ -26,6 +26,6 @@ I have covered all the points mentioned below:
     6) select multiple genre from list
     7) Scroll upto present year 
     8) Well commented and cleaned code on Git
-    9) Deployment done on the link ( ).
+    9) Deployment done on the link (https://main--movie-listing-moviefix.netlify.app/ ).
 
 
