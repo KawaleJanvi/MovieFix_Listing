@@ -1,5 +1,5 @@
 {
-  "name": "kpoint-movie-application",
+  "name": "movie-application",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

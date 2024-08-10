@@ -11,7 +11,7 @@ import { HeaderComponent } from './header/header.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Kpoint_movie_application';
+  title = 'movie_application';
   selectedGenre = [];
   selectGenreFromList(e: any){
   this.selectedGenre = e;

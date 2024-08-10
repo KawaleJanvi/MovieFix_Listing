@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Kpoint_movie_application": {
+    "movie_application": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/kpoint-movie-application",
+            "outputPath": "dist/movie-application",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Kpoint_movie_application:build:production"
+              "buildTarget": "movie_application:build:production"
             },
             "development": {
-              "buildTarget": "Kpoint_movie_application:build:development"
+              "buildTarget": "movie_application:build:development"
             }
           },
           "defaultConfiguration": "development"
