@@ -5,7 +5,7 @@ Show movie list from API on scroll in upward and downward direction with genre f
 Build application using ng build
 
 # External Packages
-ngx-infinite-scroll Package is used for tacking scroll events in the application. Please fid link below.
+ngx-infinite-scroll Package is used for tacking scroll events in the application. <br/>Please find link below.<br/>
 https://www.npmjs.com/package/ngx-infinite-scroll
 
 # Installation
