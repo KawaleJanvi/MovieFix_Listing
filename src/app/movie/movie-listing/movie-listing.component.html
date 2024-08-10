@@ -1,5 +1,6 @@
-<div class="movie-year">{{year}}</div>
-<div class="movie-list-container">
+<div class="movie-year" *ngIf = "hasMoviesInGenre">{{year}}</div>
+
+<div class="movie-list-container" *ngIf = "updatedMovieListAsPerGenre.length; else loading">
     <div *ngFor="let movieByYear of updatedMovieListAsPerGenre |  desc" class="movie">
         <div class="movie-poster">
             <img src={{moviePoster}}{{movieByYear.poster_path}} />
@@ -14,3 +15,6 @@
         </div>
     </div>
 </div>
+<ng-template #loading>
+    <app-loading-movie />
+</ng-template>

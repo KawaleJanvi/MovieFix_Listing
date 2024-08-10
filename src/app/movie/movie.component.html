@@ -3,13 +3,11 @@
         <!-- (scrollend)="scrollHandler($event)" -->
         <ng-template [ngIf]='movie?.year'>
             <div infiniteScroll (scrolled)="onScroll($event,movie.year+1)" (scrolledUp)="onScroll($event,movie.year-1)">                
-                <ng-container *ngIf='movie.list.length; else loading'>
+                <ng-container>
                     <app-movie-listing  [movieList]='movie.list' [year] = "movie.year"
                         [selectedGenre]='selectedGenre' />
                 </ng-container>
-                <ng-template #loading>
-                    <app-loading-movie />
-                </ng-template>
+
             </div>
         </ng-template>
     </div>

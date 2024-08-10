@@ -16,6 +16,7 @@
 
 .movie{
     padding: 10px;
+    transition-delay: 2s;
 }
 
 .movie-year{

@@ -9,7 +9,7 @@ import { HttpInterfaceService } from '../services/http-interface.service';
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [CommonModule, MovieListingComponent, InfiniteScrollModule, LoadingMovieComponent],
+  imports: [CommonModule, MovieListingComponent, InfiniteScrollModule],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css',
   providers: [HttpInterfaceService]
@@ -75,7 +75,7 @@ export class MovieComponent {
 
       console.log(firstInViewport.id)
       if (firstInViewport.id) { this.getMovies(Number(firstInViewport.id)); }
-      else { this.getMovies(this.currentYear - 2); }
+      // else { this.getMovies(this.currentYear - 2); }
     }
   }
   getMovies(year: any) {
