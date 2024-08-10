@@ -1,24 +1,41 @@
 .movie-title{
     font-size: 1rem;
-    font-weight: bold;
-    display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
+    font-weight: bolder;
+    /* overflow: hidden; */
+    -webkit-line-clamp: 1; /* number of lines to show */
+            line-clamp: 1;
 }
-
+/* .movie-title span{
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+} */
 .movie-details-container{
     z-index: 10;
-    margin-top: -60px;
+    margin-top: -6rem;
     color: whitesmoke;
     font-size: 0.9rem;
-    padding: 10px;
+    padding: 0.7rem;
 }
+.movie-information, .movie-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.movie-information{
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
 
+}
 .movie{
-    padding: 10px;
-    transition-delay: 2s;
+    padding: 0.4rem;
+    width: 13rem;
 }
-
+/* .movie:nth-child(even){
+    padding-left: 1rem;
+} */
 .movie-year{
     color: whitesmoke;
     font-size: 1.8rem;
@@ -27,4 +44,18 @@
 .movie-list-container{
     display: flex;
     flex-wrap: wrap;
+}
+.movie-poster,.movie-poster img{
+    height: 100%;
+    width: 100%;
+}
+@media only screen and (max-width: 600px)  {
+    .movie{
+        padding-left: 0.3rem;
+        width: 45%;
+        /* overflow: hidden; */
+    }
+    /* .movie-details-container{
+        padding: 0.1rem;
+    } */
 }

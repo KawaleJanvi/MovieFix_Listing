@@ -9,9 +9,10 @@
 
 body{
     font-family:'Crimson Pro', serif;
+    background-color: #111111;
 }
 .root-container{
-    background-color: #232323;
     height: 100%;
     width: 100%;
+    margin: 0;
 }

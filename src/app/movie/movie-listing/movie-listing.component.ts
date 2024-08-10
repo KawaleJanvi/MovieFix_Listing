@@ -19,12 +19,15 @@ export class MovieListingComponent {
     if (event && event.length) {
       this.updatedMovieListAsPerGenre = this.movieList.filter((movie: any) => event.some((id) => movie.genre_ids.includes(id)));
       this.hasMoviesInGenre = Boolean(this.updatedMovieListAsPerGenre.length);
+      this.showLoading = false
     }else{
       this.updatedMovieListAsPerGenre = this.movieList;
       this.hasMoviesInGenre = Boolean(this.movieList.length);
+      if(this.movieList.length) this.showLoading = false
     }
   };
   hasMoviesInGenre: boolean = true;
   updatedMovieListAsPerGenre: any = [];
+  showLoading: boolean = true;
   moviePoster = 'https://image.tmdb.org/t/p/w220_and_h330_face';
 }
