@@ -12,23 +12,27 @@ import { CommonModule } from '@angular/common';
   providers: [HttpInterfaceService]
 })
 export class HeaderComponent {
-  genreList: any = [];
-  @Output() selectedList = new EventEmitter();
-  selectedGenre = new Set;
+  genreList: any = [];  //Has  genre list from API call
+  @Output() selectedList = new EventEmitter();      //Emits selected genres list
+  selectedGenre = new Set;     // To keep selected genre list
+
   constructor(public httpService: HttpInterfaceService) { }
 
   ngOnInit() {
+    //API call for genres
     this.httpService.getGenres().subscribe((response: any) => {
       this.genreList = response.genres;
     });
   }
-  getToggleClass(genre){
+
+  // To show selected genre color css
+  getToggleClass(genre: any){
     return this.selectedGenre.has(genre) ? 'selected' : 'not-selected';
   }
-  toggleGenre(genre) {
+
+  //Toggle behavior. Emits selected list to app component
+  toggleGenre(genre: any) {
    this.selectedGenre.has(genre) ? this.selectedGenre.delete(genre) : this.selectedGenre.add(genre);
-    // if (this.selectedGenre.size) {
-      this.selectedList.emit(Array.from(this.selectedGenre));
-    // }
+   this.selectedList.emit(Array.from(this.selectedGenre));
   }
 }

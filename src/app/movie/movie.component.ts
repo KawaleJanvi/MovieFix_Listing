@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { MovieListingComponent } from './movie-listing/movie-listing.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingMovieComponent } from '../loading-movie/loading-movie.component';
 import { HttpInterfaceService } from '../services/http-interface.service';
 
 @Component({
@@ -15,114 +13,78 @@ import { HttpInterfaceService } from '../services/http-interface.service';
   providers: [HttpInterfaceService]
 })
 export class MovieComponent {
-  @Input() selectedGenre;
-  allMovies: any = [];
-  year: number = 2012;
-  currentYear = this.year;
-  visitedYears = new Set;
+  @Input() selectedGenre: any;  // Inputs list of selected genre from header
+  allMovies: any = [];    // Contains entire data for movies
+  year: number = 2012;  // Default Year
+  visitedYears = new Set; // Keep track for visited years
+
   constructor(public httpInterfaceService: HttpInterfaceService) { }
+
   ngOnInit() {
-    // To get all the list of years for movies api 
-    // let max = new Date().getFullYear()
-    // let years = []
-    // for (var i = max; i >= 2000; i--) {
-    //   years.push(i)
-    // }
-    // years.map((year: any) => this.getMovies(year));
-    this.visitedYears.add(new Date().getFullYear()+1)
+    //To set maximum of current year i.e 2024, to stop api call for non-existent years
+    this.visitedYears.add(new Date().getFullYear() + 1);
+    //API call for default year
     this.getMovies(this.year);
-    // this.scrollChangeCallback = () => this.onContentScrolled(event);
-    // window.addEventListener('scroll',this.scrollChangeCallback, true);
   }
-  // private scrollChangeCallback: () => void;
-  // currentPosition: any;
-  // startPosition: number;
 
-  // ngAfterViewInit() {
-
-  // }
-
-  //  onContentScrolled(e) {
-  //   this.startPosition = e.srcElement.scrollTop;
-  //   let scroll = e.srcElement.scrollTop;
-  //   if(scroll){
-  //   if (scroll > this.currentPosition) {
-  //     console.log('up')
-  //   } else {
-  //     console.log('down');
-  //     this.getMovies(this.year-1);
-  //     this.year--;
-  //   }}
-  //   this.currentPosition = scroll;
-  // }
-
-  // lastScrollTop = 0;
+  //Scrollevent used strictly for scroll Up
   @HostListener('window:scroll', ['$event'])
-  scrollHandler(event) {
-    //   let currentScrollTop = event.currentTarget.scrollY
-    //   if (this.lastScrollTop > 0) {
-    //     if (currentScrollTop > this.lastScrollTop) { this.getMovies(this.year - 1); this.year-- }
-    //     else { this.getMovies(this.year + 1); this.year++; }
-    //   }
-    //   this.lastScrollTop = currentScrollTop
-    if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight*0.2)) {
-      // if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight*0.2)) {//
-      const elementsToTest = document.getElementById('main-container').querySelectorAll('div')
+  scrollHandler(event: any) {
+    //Checking for far top scroll up.
+    if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight * 0.2)) {
 
-      const firstInViewport = Array.from(elementsToTest).find(element => {
-        const { top, bottom } = element.getBoundingClientRect()
-        return bottom > 0 && top < window.innerHeight
-      })
-
-      console.log(firstInViewport.id)
+      //To get current visible year for api call example: If scrolled up from 2012 call 2011
+      const elementsToTest: any = document.getElementById('main-container')?.querySelectorAll('div');
+      const firstInViewport: any = Array.from(elementsToTest).find((element: any) => {
+        const { top, bottom } = element.getBoundingClientRect();
+        return bottom > 0 && top < window.innerHeight;
+      });
+      //Api call for upward scroll
       if (firstInViewport.id) { this.getMovies(Number(firstInViewport.id)); }
-      // else { this.getMovies(this.currentYear - 2); }
     }
   }
+
+  //API calling function
   getMovies(year: any) {
+    //To stop multiple API calls for same year
     if (!this.visitedYears.has(year)) {
+      // To keep entry for visited year
       this.visitedYears.add(year);
+      //API call
       this.httpInterfaceService.getMovieList(year).subscribe((response: any) => {
-        let index = this.allMovies.findIndex((yr) => yr?.year == year);
-        //delete this.allMovies[index];
+        //To replace data in an object which is used to show loader for years with no data visible on viewport
+        let index = this.allMovies.findIndex((yr: any) => yr?.year == year);
         this.allMovies.splice(index, 1);
         this.allMovies.push({ year: year, list: response.results });
+
+        //To show loader on the viewport
+        //Previous year
         if (!this.visitedYears.has(year - 1)) {
           this.allMovies.push({ year: year - 1, list: [] });
         }
+        //Next year
         if (!this.visitedYears.has(year + 1)) {
           this.allMovies.push({ year: year + 1, list: [] });
         }
-        console.log(this, this.allMovies, '-', response)
-        this.currentYear = year;
-        // this.year = year;
-        this.allMovies.sort(function (a, b) {
+        //To show data in descending order on UI
+        this.allMovies.sort(function (a: any, b: any) {
           return a.year - b.year;
         });
       });
+
+      //To scroll default year to the viewport
       if (year == this.year) {
-      setTimeout(() => {
-        // document.getElementById('2012').scrollTo(0, document.getElementById('main-container').offsetTop);
-        let distance= document.getElementById(this.year.toString())?.getBoundingClientRect().top;
-        window.scrollTo(0, distance - 130)
-      }, 100);
+        setTimeout(() => {
+          // Distance is calculated according to the container top and added some values to it, to show top of the default year.
+          let distance: any = document.getElementById(this.year.toString())?.getBoundingClientRect().top;
+          window.scrollTo(0, distance - 130);
+        }, 100);
       }
     }
   }
-  onScroll(event, year) {
-    // console.log("scrolled!!",event, year);
-    // if(year == this.year + 1){
-    //   this.scrollTopPosition = event.currentScrollPosition;
-    // }
-    // else if(this.scrollTopPosition == event.currentScrollPosition){
-    //   this.getMovies(this.year-1)
-    //   return;
-    // }
-    // this.currentYear = year;
-    this.currentYear = year;
+
+  //On scroll down event function call
+  onScroll(event: any, year: any) {
     this.getMovies(year);
   }
-  // ngOnDestroy() {
-  //   window.removeEventListener('scroll', this.scrollChangeCallback, true);
-  // }
 }

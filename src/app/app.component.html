@@ -1,5 +1,7 @@
-<!-- <router-outlet /> -->
+<!-- Main container -->
 <div class="main-container">
+    <!--Header Component-->
     <app-header (selectedList)="selectGenreFromList($event)"/>
+    <!--Movie listing main Component-->
     <app-movie [selectedGenre] = 'selectedGenre'></app-movie>
 </div>
