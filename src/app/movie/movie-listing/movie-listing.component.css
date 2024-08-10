@@ -17,3 +17,13 @@
 .movie{
     padding: 10px;
 }
+
+.movie-year{
+    color: whitesmoke;
+    font-size: 1.8rem;
+    padding: 1rem;
+}
+.movie-list-container{
+    display: flex;
+    flex-wrap: wrap;
+}

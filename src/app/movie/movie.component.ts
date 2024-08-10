@@ -65,7 +65,7 @@ export class MovieComponent {
     //     else { this.getMovies(this.year + 1); this.year++; }
     //   }
     //   this.lastScrollTop = currentScrollTop
-    if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight*0.3)) {
+    if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight*0.2)) {
       const elementsToTest = document.getElementById('main-container').querySelectorAll('div')
 
       const firstInViewport = Array.from(elementsToTest).find(element => {
@@ -102,7 +102,7 @@ export class MovieComponent {
       // if (year == this.year) {
       setTimeout(() => {
         // document.getElementById('2012').scrollTo(0, document.getElementById('main-container').offsetTop);
-        window.scrollTo(0, document.getElementById('main-container').offsetTop + 110)
+        window.scrollTo(0, document.getElementById('main-container').offsetTop + 70)
       }, 100);
       // }
     }

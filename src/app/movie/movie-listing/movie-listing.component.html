@@ -1,13 +1,16 @@
-<div *ngFor="let movieByYear of updatedMovieListAsPerGenre |  desc" class="movie">
-    <div class="movie-poster">
-        <img src={{moviePoster}}{{movieByYear.poster_path}} />
-    </div>
-    <div class="movie-details-container">
-        <div class="movie-title">
-            <span title={{movieByYear.title}}>{{movieByYear.title}}</span>
+<div class="movie-year">{{year}}</div>
+<div class="movie-list-container">
+    <div *ngFor="let movieByYear of updatedMovieListAsPerGenre |  desc" class="movie">
+        <div class="movie-poster">
+            <img src={{moviePoster}}{{movieByYear.poster_path}} />
         </div>
-        <div>
-            {{movieByYear.popularity}}
+        <div class="movie-details-container">
+            <div class="movie-title">
+                <span title={{movieByYear.title}}>{{movieByYear.title}}</span>
+            </div>
+            <div>
+                {{movieByYear.popularity}}
+            </div>
         </div>
     </div>
 </div>

@@ -12,6 +12,7 @@ import { OrderByPipe } from '../../order-by.pipe';
 })
 export class MovieListingComponent {
   @Input() movieList = [];
+  @Input() year;
   @Input()
   set selectedGenre(event) {
     if (event && event.length) {
