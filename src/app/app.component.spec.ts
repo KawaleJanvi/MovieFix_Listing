@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'Kpoint_movie_application' title`, () => {
+  it(`should have the 'movie_application' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Kpoint_movie_application');
+    expect(app.title).toEqual('movie_application');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Kpoint_movie_application');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, movie_application');
   });
 });

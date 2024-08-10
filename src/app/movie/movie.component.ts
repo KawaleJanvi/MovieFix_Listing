@@ -9,7 +9,7 @@ import { HttpInterfaceService } from '../services/http-interface.service';
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [CommonModule, MovieListingComponent, InfiniteScrollModule, LoadingMovieComponent],
+  imports: [CommonModule, MovieListingComponent, InfiniteScrollModule],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.css',
   providers: [HttpInterfaceService]
@@ -20,7 +20,6 @@ export class MovieComponent {
   year: number = 2012;
   currentYear = this.year;
   visitedYears = new Set;
-
   constructor(public httpInterfaceService: HttpInterfaceService) { }
   ngOnInit() {
     // To get all the list of years for movies api 
@@ -30,6 +29,7 @@ export class MovieComponent {
     //   years.push(i)
     // }
     // years.map((year: any) => this.getMovies(year));
+    this.visitedYears.add(new Date().getFullYear()+1)
     this.getMovies(this.year);
     // this.scrollChangeCallback = () => this.onContentScrolled(event);
     // window.addEventListener('scroll',this.scrollChangeCallback, true);
@@ -65,7 +65,8 @@ export class MovieComponent {
     //     else { this.getMovies(this.year + 1); this.year++; }
     //   }
     //   this.lastScrollTop = currentScrollTop
-    if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight*0.3)) {
+    if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight*0.2)) {
+      // if (event.currentTarget.scrollY >= 0 && event.currentTarget.scrollY <= (event.currentTarget.outerHeight*0.2)) {//
       const elementsToTest = document.getElementById('main-container').querySelectorAll('div')
 
       const firstInViewport = Array.from(elementsToTest).find(element => {
@@ -75,7 +76,7 @@ export class MovieComponent {
 
       console.log(firstInViewport.id)
       if (firstInViewport.id) { this.getMovies(Number(firstInViewport.id)); }
-      else { this.getMovies(this.currentYear - 2); }
+      // else { this.getMovies(this.currentYear - 2); }
     }
   }
   getMovies(year: any) {
@@ -99,12 +100,13 @@ export class MovieComponent {
           return a.year - b.year;
         });
       });
-      // if (year == this.year) {
+      if (year == this.year) {
       setTimeout(() => {
         // document.getElementById('2012').scrollTo(0, document.getElementById('main-container').offsetTop);
-        window.scrollTo(0, document.getElementById('main-container').offsetTop + 110)
+        let distance= document.getElementById(this.year.toString())?.getBoundingClientRect().top;
+        window.scrollTo(0, distance - 130)
       }, 100);
-      // }
+      }
     }
   }
   onScroll(event, year) {
