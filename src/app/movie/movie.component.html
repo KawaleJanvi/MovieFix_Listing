@@ -1,13 +1,12 @@
 <div class="movie-container" id="main-container">
     <div *ngFor="let movie of allMovies" (scrollend)="scrollHandler($event)" id="{{movie?.year}}">
-        <!-- (scrollend)="scrollHandler($event)" -->
         <ng-template [ngIf]='movie?.year'>
             <div infiniteScroll (scrolled)="onScroll($event,movie.year+1)" (scrolledUp)="onScroll($event,movie.year-1)">                
                 <ng-container>
+                    <!--To show list of movies and loader-->
                     <app-movie-listing  [movieList]='movie.list' [year] = "movie.year"
                         [selectedGenre]='selectedGenre' />
                 </ng-container>
-
             </div>
         </ng-template>
     </div>

@@ -1,38 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-/* @font-face {
-    font-family: 'roboto';
-    font-style: normal;
-    font-weight: 500;
-    src: url(../public/Roboto-Light.ttf) format('ttf');
-  } */
-  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata');
 
-body{
-    font-family:'Crimson Pro', serif;
+body {
+    font-family: 'Crimson Pro', serif;
     background-color: #111111;
 }
-.root-container{
+
+.root-container {
     height: 100%;
     width: 100%;
     margin: 0;
 }
-/* Works on Firefox */
+/* CSS for scroll color and background overrides custom scroll colors*/
 * {
     scrollbar-width: thin;
     scrollbar-color: grey rgba(255, 255, 255, 0);
-  }
-  
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
+}
+
+*::-webkit-scrollbar {
     width: 12px;
-  }
-  
-  *::-webkit-scrollbar-track {
-    background: orange;
-  }
-  
-  *::-webkit-scrollbar-thumb {
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+*::-webkit-scrollbar-thumb {
     background-color: grey;
     border-radius: 20px;
     border: 3px solid rgba(255, 255, 255, 0);
-  }
+}

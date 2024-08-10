@@ -6,14 +6,16 @@ import { HeaderComponent } from './header/header.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MovieComponent, HeaderComponent, RouterModule ],
+  imports: [RouterOutlet, MovieComponent, HeaderComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'movie_application';
   selectedGenre = [];
-  selectGenreFromList(e: any){
-  this.selectedGenre = e;
-}
+
+  //Emits selected genre list to movie component
+  selectGenreFromList(e: any) {
+    this.selectedGenre = e;
+  }
 }

@@ -1,11 +1,15 @@
+<!--Shows year on the UI-->
 <div class="movie-year" *ngIf="hasMoviesInGenre">{{year}}</div>
-
+<!--To check if data is present-->
 <div *ngIf="updatedMovieListAsPerGenre.length">
     <div class="movie-list-container">
+        <!--Iterate movie list in descending order-->
         <div *ngFor="let movieByYear of updatedMovieListAsPerGenre |  desc" class="movie">
+            <!--Poster Image-->
             <div class="movie-poster">
                 <img src={{moviePoster}}{{movieByYear.poster_path}} />
             </div>
+            <!--Movie Information card-->
             <div class="movie-details-container">
                 <div class="movie-title">
                     <span title={{movieByYear.title}}>{{movieByYear.title}}</span>
@@ -20,6 +24,7 @@
         </div>
     </div>
 </div>
+<!--Loader-->
 <ng-template [ngIf] = "showLoading">
     <app-loading-movie />
 </ng-template>
