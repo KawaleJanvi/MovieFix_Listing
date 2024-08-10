@@ -17,6 +17,7 @@ export class MovieComponent {
   allMovies: any = [];    // Contains entire data for movies
   year: number = 2012;  // Default Year
   visitedYears = new Set; // Keep track for visited years
+  setFlagForOngoingApiCall: boolean = true; // flag to stop extra calls
 
   constructor(public httpInterfaceService: HttpInterfaceService) { }
 
@@ -40,14 +41,14 @@ export class MovieComponent {
         return bottom > 0 && top < window.innerHeight;
       });
       //Api call for upward scroll
-      if (firstInViewport.id) { this.getMovies(Number(firstInViewport.id)); }
+      if (firstInViewport.id) { this.setFlagForOngoingApiCall = true; this.getMovies(Number(firstInViewport.id)); }
     }
   }
 
   //API calling function
   getMovies(year: any) {
     //To stop multiple API calls for same year
-    if (!this.visitedYears.has(year)) {
+    if (!this.visitedYears.has(year) && this.setFlagForOngoingApiCall) {
       // To keep entry for visited year
       this.visitedYears.add(year);
       //API call
@@ -70,6 +71,7 @@ export class MovieComponent {
         this.allMovies.sort(function (a: any, b: any) {
           return a.year - b.year;
         });
+        this.setFlagForOngoingApiCall = false;
       });
 
       //To scroll default year to the viewport
@@ -85,6 +87,7 @@ export class MovieComponent {
 
   //On scroll down event function call
   onScroll(event: any, year: any) {
+    this.setFlagForOngoingApiCall = true;
     this.getMovies(year);
   }
 }
