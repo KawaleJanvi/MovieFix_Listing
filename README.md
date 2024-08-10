@@ -17,3 +17,15 @@ Movie listing application  with onscroll  API calls. Movies of default year will
 # Usage 
 Run on npm start and the application will start running on http://localhost:4200/
 
+I have covered all the points mentioned below:
+    1) APi calls on upward and downward scroll.
+    2) Genre selection
+    3) Filter list in descending order
+    4) Show information of movie like description and title on the poster. Data is also visible on hover.
+    5) Mobile responsive
+    6) select multiple genre from list
+    7) Scroll upto present year 
+    8) Well commented and cleaned code on Git
+    9) Deployment done on the link ( ).
+
+
