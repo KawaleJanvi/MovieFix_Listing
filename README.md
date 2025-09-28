@@ -5,7 +5,7 @@ Show movie list from API on scroll in upward and downward direction with genre f
 Build application using ng build
 
 # External Packages
-ngx-infinite-scroll Package is used for tacking scroll events in the application. Please fid link below.
+ngx-infinite-scroll Package is used for tacking scroll events in the application. <br/>Please find link below.<br/>
 https://www.npmjs.com/package/ngx-infinite-scroll
 
 # Installation
@@ -17,6 +17,7 @@ Movie listing application  with onscroll  API calls. Movies of default year will
 # Usage 
 Run on npm start and the application will start running on http://localhost:4200/
 
+
 I have covered all the points mentioned below:
     1) APi calls on upward and downward scroll.
     2) Genre selection
@@ -27,5 +28,6 @@ I have covered all the points mentioned below:
     7) Scroll upto present year 
     8) Well commented and cleaned code on Git
     9) Deployment done on the link (https://main--movie-listing-moviefix.netlify.app/ ).
+
 
 
